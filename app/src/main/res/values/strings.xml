@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">app1</string>
+    <string name="register">Регистрация</string>
+    <string name="login">Введите логин</string>
+    <string name="pass">Введите пароль</string>
+    <string name="email">Введите email</string>
+    <string name="sign_in">Зарегистрироваться</string>
+    <string name="auth">Авторизация</string>
+    <string name="do_auth">Авторизоваться</string>
+    <string name="back_to_sign_in">Вернуться на страницу входа</string>
+    <string name="do_reg">Зарегистрируйтесь, если нет аккаунта</string>
+    <string name="start_img_descr">Красивая картинка</string>
+    <string name="continue_">Продолжить</string>
+    <string name="other">Это другое..</string>
+    <string name="telega">Телега</string>
+    <string name="mems">Мемограмм</string>
+    <string name="chats">Чатики</string>
+    <string name="message">Сообщение</string>
+    <string name="date_of_message">Дата</string>
+    <string name="sender_of_message">Отправитель</string>
+    <string name="profile_img">Изображение профиля</string>
+</resources>
