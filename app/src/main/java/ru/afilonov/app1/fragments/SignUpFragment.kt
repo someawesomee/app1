@@ -4,31 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import ru.afilonov.app1.R
-import ru.afilonov.app1.activities.MainActivity
+import ru.afilonov.app1.databinding.FragmentSignUpBinding
 import ru.afilonov.app1.db.DbHelper
 import ru.afilonov.app1.models.User
-import ru.afilonov.app1.utils.SharedViewModel
 
 class SignUpFragment : Fragment() {
+
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var userLogin: EditText
     private lateinit var userEmail: EditText
     private lateinit var userPass: EditText
-    private lateinit var viewModel: SharedViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+    ): View {
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,14 +35,12 @@ class SignUpFragment : Fragment() {
         userLogin = view.findViewById(R.id.user_login)
         userEmail = view.findViewById(R.id.user_email)
         userPass = view.findViewById(R.id.user_pass)
-        val button: Button = view.findViewById(R.id.button_reg)
-        val doBack: TextView = view.findViewById(R.id.back_sign_in)
 
-        doBack.setOnClickListener {
-            (activity as? MainActivity)?.navigateToSignInFragment()
+        binding.backSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
 
-        button.setOnClickListener {
+        binding.buttonReg.setOnClickListener {
             val login = userLogin.text.toString().trim()
             val email = userEmail.text.toString().trim()
             val pass = userPass.text.toString().trim()
@@ -58,8 +54,7 @@ class SignUpFragment : Fragment() {
             else {
                 val user = User(login, email, pass)
                 val db = DbHelper(requireContext(), null)
-                viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-                viewModel.userLiveData.value = user
+
                 db.addUser(user)
                 Toast.makeText(
                     requireContext(),
@@ -67,13 +62,13 @@ class SignUpFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                (activity as? MainActivity)?.navigateToSignInFragment()
+                val action = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment(user)
+                findNavController().navigate(action)
 
                 userLogin.text.clear()
                 userEmail.text.clear()
                 userPass.text.clear()
             }
-
         }
     }
 }

@@ -1,4 +1,6 @@
 package ru.afilonov.app1.models
 
-class User(val login: String, val email: String, val pass: String) {
+import java.io.Serializable
+
+class User(val login: String, val email: String, val pass: String) : Serializable {
 }

@@ -4,29 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import ru.afilonov.app1.R
-import ru.afilonov.app1.activities.MainActivity
+import ru.afilonov.app1.databinding.FragmentSignInBinding
 import ru.afilonov.app1.db.DbHelper
-import ru.afilonov.app1.models.User
-import ru.afilonov.app1.utils.SharedViewModel
 
 class SignInFragment : Fragment() {
 
+    private var _binding: FragmentSignInBinding? = null
+    private val binding get() = _binding!!
+    private val args: SignInFragmentArgs by navArgs()
+
     private lateinit var userLogin: EditText
     private lateinit var userPass: EditText
-    private lateinit var viewModel: SharedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+    ): View {
+        _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,20 +35,19 @@ class SignInFragment : Fragment() {
 
         userLogin = view.findViewById(R.id.user_login_auth)
         userPass = view.findViewById(R.id.user_pass_auth)
-        val button: Button = view.findViewById(R.id.button_auth)
-        val doReg: TextView = view.findViewById(R.id.do_reg)
 
-        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
-            userLogin.setText(user.login)
-            userPass.setText(user.pass)
+        val user = args.user
+        user?.let {
+            binding.userLoginAuth.setText(it.login)
+            binding.userPassAuth.setText(it.pass)
         }
 
-        doReg.setOnClickListener {
-            (activity as? MainActivity)?.navigateToSignUpFragment()
+
+        binding.doReg.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
-        button.setOnClickListener {
+        binding.buttonAuth.setOnClickListener {
             val login = userLogin.text.toString().trim()
             val pass = userPass.text.toString().trim()
 
@@ -70,7 +70,7 @@ class SignInFragment : Fragment() {
                     userLogin.text.clear()
                     userPass.text.clear()
 
-                    (activity as? MainActivity)?.navigateToHomeFragment()
+                    findNavController().navigate(R.id.action_signInFragment_to_homeFragment)
                 } else
                     Toast.makeText(
                         requireContext(),
@@ -80,10 +80,5 @@ class SignInFragment : Fragment() {
             }
 
         }
-    }
-
-    fun receiveUserData(user: User) {
-        userLogin.setText(user.login)
-        userPass.setText(user.pass)
     }
 }
