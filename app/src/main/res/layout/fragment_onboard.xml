@@ -4,9 +4,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".fragments.OnboardFragment"
     android:orientation="vertical"
-    android:background="#201E28"
-    tools:context=".OnboardActivity">
+    android:background="#201E28">
 
     <ImageView
         android:id="@+id/logo"

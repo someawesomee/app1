@@ -19,4 +19,6 @@
     <string name="date_of_message">Дата</string>
     <string name="sender_of_message">Отправитель</string>
     <string name="profile_img">Изображение профиля</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
