@@ -19,4 +19,5 @@
     <string name="date_of_message">Дата</string>
     <string name="sender_of_message">Отправитель</string>
     <string name="profile_img">Изображение профиля</string>
+    <string name="login_name">Login</string>
 </resources>
