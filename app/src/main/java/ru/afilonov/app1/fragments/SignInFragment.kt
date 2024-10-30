@@ -9,11 +9,18 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import ru.afilonov.app1.R
 import ru.afilonov.app1.activities.MainActivity
 import ru.afilonov.app1.db.DbHelper
+import ru.afilonov.app1.models.User
+import ru.afilonov.app1.utils.SharedViewModel
 
 class SignInFragment : Fragment() {
+
+    private lateinit var userLogin: EditText
+    private lateinit var userPass: EditText
+    private lateinit var viewModel: SharedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,13 +32,19 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userLogin: EditText = view.findViewById(R.id.user_login_auth)
-        val userPass: EditText = view.findViewById(R.id.user_pass_auth)
+        userLogin = view.findViewById(R.id.user_login_auth)
+        userPass = view.findViewById(R.id.user_pass_auth)
         val button: Button = view.findViewById(R.id.button_auth)
         val doReg: TextView = view.findViewById(R.id.do_reg)
 
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
+            userLogin.setText(user.login)
+            userPass.setText(user.pass)
+        }
+
         doReg.setOnClickListener {
-            (activity as? MainActivity)?.openSignUpFragment()
+            (activity as? MainActivity)?.navigateToSignUpFragment()
         }
 
         button.setOnClickListener {
@@ -57,7 +70,7 @@ class SignInFragment : Fragment() {
                     userLogin.text.clear()
                     userPass.text.clear()
 
-                    (activity as? MainActivity)?.openHomeFragment()
+                    (activity as? MainActivity)?.navigateToHomeFragment()
                 } else
                     Toast.makeText(
                         requireContext(),
@@ -67,7 +80,10 @@ class SignInFragment : Fragment() {
             }
 
         }
+    }
 
-
+    fun receiveUserData(user: User) {
+        userLogin.setText(user.login)
+        userPass.setText(user.pass)
     }
 }

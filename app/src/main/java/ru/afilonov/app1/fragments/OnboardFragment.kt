@@ -34,7 +34,7 @@ class OnboardFragment : Fragment() {
         image.setImageResource(imageId)
 
         button.setOnClickListener {
-            (activity as? MainActivity)?.openSignInFragment()
+            (activity as? MainActivity)?.navigateToSignInFragment()
         }
     }
 

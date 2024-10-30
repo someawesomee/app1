@@ -15,25 +15,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null)
-            openFragment(OnboardFragment())
+            replaceFragment(OnboardFragment())
     }
 
-    private fun openFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container_view, fragment)
             .addToBackStack(null)
             .commit()
     }
 
-    fun openSignInFragment() {
-        openFragment(SignInFragment())
+    fun navigateToSignInFragment() {
+        replaceFragment(SignInFragment())
     }
 
-    fun openHomeFragment() {
-        openFragment(HomeFragment())
+    fun navigateToHomeFragment() {
+        replaceFragment(HomeFragment())
     }
 
-    fun openSignUpFragment() {
-        openFragment(SignUpFragment())
+    fun navigateToSignUpFragment() {
+        replaceFragment(SignUpFragment())
     }
 }
