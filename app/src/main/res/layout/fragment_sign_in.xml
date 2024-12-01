@@ -55,6 +55,16 @@
         android:backgroundTint="#e2a600"
         android:text="@string/do_auth" />
 
+    <Button
+        android:id="@+id/test_api"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#9B7300"
+        android:text="@string/test_api"
+        android:textColor="#5e4602" />
+
     <TextView
         android:id="@+id/do_reg"
         android:layout_width="wrap_content"

@@ -20,15 +20,18 @@
         tools:layout="@layout/fragment_sign_in">
         <argument
             android:name="user"
+            android:defaultValue="@null"
             app:argType="ru.afilonov.app1.models.User"
-            app:nullable="true"
-            android:defaultValue="@null"/>
+            app:nullable="true" />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_heroesFragment"
+            app:destination="@id/heroesFragment" />
     </fragment>
 
     <fragment
@@ -40,11 +43,16 @@
             app:destination="@id/signInFragment">
             <argument
                 android:name="user"
+                android:defaultValue="@null"
                 app:argType="ru.afilonov.app1.models.User"
-                app:nullable="true"
-                android:defaultValue="@null"/>
+                app:nullable="true" />
         </action>
     </fragment>
+
+    <fragment
+        android:id="@+id/heroesFragment"
+        android:name="ru.afilonov.app1.fragments.HeroesFragment"
+        tools:layout="@layout/fragment_heroes" />
 
     <fragment
         android:id="@+id/homeFragment"
