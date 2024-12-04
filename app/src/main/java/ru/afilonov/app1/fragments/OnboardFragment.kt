@@ -13,7 +13,7 @@ import ru.afilonov.app1.databinding.FragmentOnboardBinding
 class OnboardFragment : Fragment() {
 
     private var _binding: FragmentOnboardBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw Exception()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -16,7 +16,7 @@ import ru.afilonov.app1.db.DbHelper
 class SignInFragment : Fragment() {
 
     private var _binding: FragmentSignInBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw Exception()
     private val args: SignInFragmentArgs by navArgs()
 
     private lateinit var userLogin: EditText
@@ -83,6 +83,10 @@ class SignInFragment : Fragment() {
 
         binding.testApi.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_heroesFragment)
+        }
+
+        binding.btnSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_settingsFragment)
         }
     }
 }

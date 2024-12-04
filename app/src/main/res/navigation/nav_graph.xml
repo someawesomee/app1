@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_signInFragment_to_heroesFragment"
             app:destination="@id/heroesFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_settingsFragment"
+            app:destination="@+id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -58,4 +61,13 @@
         android:id="@+id/homeFragment"
         android:name="ru.afilonov.app1.fragments.HomeFragment"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.afilonov.app1.fragments.SettingsFragment"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_signInFragment"
+            app:destination="@id/signInFragment"/>
+    </fragment>
 </navigation>

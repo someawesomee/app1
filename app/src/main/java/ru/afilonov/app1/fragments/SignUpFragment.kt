@@ -16,7 +16,7 @@ import ru.afilonov.app1.models.User
 class SignUpFragment : Fragment() {
 
     private var _binding: FragmentSignUpBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw Exception()
 
     private lateinit var userLogin: EditText
     private lateinit var userEmail: EditText

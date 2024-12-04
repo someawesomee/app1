@@ -12,6 +12,7 @@ import ru.afilonov.app1.models.Chat
 import ru.afilonov.app1.utils.ChatAdapter
 
 class HomeFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
