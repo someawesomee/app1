@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("androidx.navigation.safeargs.kotlin") version "2.8.3"
     id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.safeargs.kotlin)
+    id("com.google.devtools.ksp") version "1.9.20-1.0.13"
+    id("kotlinx-serialization")
 }
 
 android {
@@ -57,7 +59,17 @@ dependencies {
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.kotlinx.serialization.json.v160)
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation ("androidx.room:room-runtime:2.5.1")
+    implementation ("androidx.room:room-ktx:2.5.1")
     implementation(libs.okhttp)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.okhttp)
+
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
 

@@ -2,6 +2,7 @@ package ru.afilonov.app1.utils
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.afilonov.app1.databinding.ListItemBinding
 import ru.afilonov.app1.models.ApiResponse
@@ -15,6 +16,12 @@ class ApiResponseAdapter(private var items: List<ApiResponse>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: ApiResponseViewHolder, position: Int) {
         holder.bind(items[position])
+    }
+
+    fun updateData(newItems: List<ApiResponse>) {
+        val diff = DiffUtil.calculateDiff(MyDiffCallback(items, newItems))
+        items = newItems
+        diff.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount(): Int = items.size

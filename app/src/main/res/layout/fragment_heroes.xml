@@ -10,11 +10,38 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btnUpdateHeroes"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:text="@string/update_data" />-->
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="@string/update_data" />
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/previousPageButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="@string/btnBack"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/nextPageButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="@string/btnNext"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
 </LinearLayout>

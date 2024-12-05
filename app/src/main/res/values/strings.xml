@@ -36,4 +36,6 @@
     <string name="delete">Delete</string>
     <string name="backup">Backup</string>
     <string name="backup_status_unknown">backup_status_unknown</string>
+    <string name="btnBack">Назад</string>
+    <string name="btnNext">Вперед</string>
 </resources>

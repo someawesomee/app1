@@ -1,7 +1,6 @@
 package ru.afilonov.app1.fragments
 
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,13 @@ import kotlinx.coroutines.launch
 import ru.afilonov.app1.databinding.FragmentHeroesBinding
 import ru.afilonov.app1.datasource.HeroesDataSource
 import ru.afilonov.app1.datasource.RemoteHeroesDataSource
+import ru.afilonov.app1.db.AppDatabase
+import ru.afilonov.app1.entities.Hero
+import ru.afilonov.app1.models.ApiResponse
 import ru.afilonov.app1.network.RetrofitApi
 import ru.afilonov.app1.network.RetrofitApiImpl
+import ru.afilonov.app1.repository.HeroRepository
 import ru.afilonov.app1.utils.ApiResponseAdapter
-import java.io.File
-import java.io.IOException
 
 class HeroesFragment : Fragment() {
 
@@ -26,14 +27,21 @@ class HeroesFragment : Fragment() {
 
     private var _binding: FragmentHeroesBinding? = null
     private val binding get() = _binding ?: throw Exception()
+    private lateinit var heroRepository: HeroRepository
+
+    private var currentPage = 1
+    private val pageSize = 10
 
     private lateinit var adapter: ApiResponseAdapter
     private lateinit var dataSource: HeroesDataSource
+    private var hasMoreData = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _retrofitApi = RetrofitApiImpl()
         dataSource = RemoteHeroesDataSource(retrofitApi)
+        val heroDao = AppDatabase.getInstance(requireContext()).heroDao()
+        heroRepository = HeroRepository(heroDao)
     }
 
     override fun onCreateView(
@@ -47,47 +55,118 @@ class HeroesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerViewHeroes.layoutManager = LinearLayoutManager(requireContext())
+        updateButtonsVisibility()
 
+        binding.recyclerViewHeroes.layoutManager = LinearLayoutManager(requireContext())
         adapter = ApiResponseAdapter(listOf())
         binding.recyclerViewHeroes.adapter = adapter
 
-        lifecycleScope.launch {
-            try {
-                val heroes = dataSource.getHeroes(12, 50)
-                Log.d("HeroesFragment", "Fetched heroes: $heroes")
-                binding.recyclerViewHeroes.adapter = ApiResponseAdapter(heroes)
+        loadData()
 
-                val isSaved = saveFileToExternalStorage("heroes_12.txt", heroes.toString())
-                if (isSaved) {
-                    Log.d("HeroesFragment", "Heroes data saved to file successfully")
-                } else {
-                    Log.e("HeroesFragment", "Failed to save heroes data to file")
+        binding.refreshButton.setOnClickListener {
+            refreshData()
+        }
+
+        binding.nextPageButton.setOnClickListener {
+            lifecycleScope.launch {
+                try {
+                    val heroes = dataSource.getHeroes(currentPage + 1, pageSize)
+                    if (heroes.isNotEmpty()) {
+                        heroRepository.saveCharacters(heroes.map { apiResponse ->
+                            Hero(
+                                name = apiResponse.name,
+                                gender = apiResponse.gender,
+                                culture = apiResponse.culture,
+                                born = apiResponse.born,
+                                titles = apiResponse.titles,
+                                aliases = apiResponse.aliases,
+                                playedBy = apiResponse.playedBy
+                            )
+                        })
+                        currentPage++
+                        loadData()
+                    }
+                } catch (e: Exception) {
+                    Log.e("HeroesFragment", "Failed to fetch next page from API", e)
                 }
+            }
+        }
 
-                saveFileToExternalStorage("file_12.txt", heroes.toString())
-            } catch (e: Exception) {
-                Log.e("HeroesFragment", "Failed to fetch heroes", e)
+        binding.previousPageButton.setOnClickListener {
+            if (currentPage > 1) {
+                currentPage--
+                loadData()
             }
         }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    //                                    Save to txt
+    //                                    view content
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private fun saveFileToExternalStorage(fileName: String, content: String): Boolean {
-        val externalDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-        if (externalDir != null) {
-            val file = File(externalDir, fileName)
-            return try {
-                file.writeText(content)
-                true
-            } catch (e: IOException) {
-                e.printStackTrace()
-                false
+    private fun loadData() {
+        lifecycleScope.launch {
+            heroRepository.getCharacters(currentPage, pageSize).collect { heroes ->
+                val apiResponses = heroes.map { hero ->
+                    ApiResponse(
+                        name = hero.name,
+                        gender = hero.gender,
+                        culture = hero.culture,
+                        born = hero.born,
+                        titles = hero.titles,
+                        aliases = hero.aliases,
+                        playedBy = hero.playedBy
+                    )
+                }
+                adapter.updateData(apiResponses)
+                hasMoreData = heroes.size == pageSize
+                updateButtonsVisibility()
             }
         }
-        return false
+    }
+
+    private fun fetchHeroesFromApi() {
+        lifecycleScope.launch {
+            try {
+                val heroes = dataSource.getHeroes(currentPage, pageSize)
+                Log.d("HeroesFragment", "Fetched heroes from API: $heroes")
+
+                if (heroes.isNotEmpty()) {
+                    heroRepository.saveCharacters(heroes.map { apiResponse ->
+                        Hero(
+                            name = apiResponse.name,
+                            gender = apiResponse.gender,
+                            culture = apiResponse.culture,
+                            born = apiResponse.born,
+                            titles = apiResponse.titles,
+                            aliases = apiResponse.aliases,
+                            playedBy = apiResponse.playedBy
+                        )
+                    })
+
+                    adapter.updateData(heroes)
+                    hasMoreData = heroes.size == pageSize
+                }
+
+                updateButtonsVisibility()
+
+            } catch (e: Exception) {
+                Log.e("HeroesFragment", "Failed to fetch heroes from API", e)
+            }
+        }
+    }
+
+    private fun updateButtonsVisibility() {
+        binding.previousPageButton.visibility = if (currentPage > 1) View.VISIBLE else View.GONE
+        binding.nextPageButton.visibility = if (hasMoreData) View.VISIBLE else View.GONE
+    }
+
+
+    private fun refreshData() {
+        lifecycleScope.launch {
+            currentPage = 1
+            heroRepository.clearCharacters()
+            fetchHeroesFromApi()
+        }
     }
 }
