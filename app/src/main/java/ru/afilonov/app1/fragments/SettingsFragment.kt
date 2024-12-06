@@ -131,9 +131,8 @@ class SettingsFragment : Fragment() {
                 val isDarkTheme = preferences[DARK_THEME_KEY] ?: false
                 val areNotificationsEnabled = preferences[NOTIFICATIONS_KEY] ?: true
 
-                view?.findViewById<Switch>(R.id.theme_switch)?.isChecked = isDarkTheme
-                view?.findViewById<Switch>(R.id.notification_switch)?.isChecked =
-                    areNotificationsEnabled
+                binding.themeSwitch.isChecked = isDarkTheme
+                binding.notificationSwitch.isChecked = areNotificationsEnabled
             }
         }
     }
