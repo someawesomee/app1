@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#201E28"
-    tools:context=".OnboardActivity">
+    tools:context="ru.messenger.app1.OnboardActivity">
 
     <ImageView
         android:id="@+id/logo"
