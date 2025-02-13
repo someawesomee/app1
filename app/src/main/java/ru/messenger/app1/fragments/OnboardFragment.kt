@@ -1,4 +1,4 @@
-package ru.afilonov.app1.fragments
+package ru.messenger.app1.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import ru.afilonov.app1.R
-import ru.afilonov.app1.activities.MainActivity
+import ru.messenger.app1.R
+import ru.messenger.app1.activities.MainActivity
 
 class OnboardFragment : Fragment() {
 

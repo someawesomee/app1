@@ -1,10 +1,10 @@
-package ru.afilonov.app1.db
+package ru.messenger.app1.db
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import ru.afilonov.app1.models.User
+import ru.messenger.app1.models.User
 
 class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?) : SQLiteOpenHelper(context, "app1", factory, 1) {
     override fun onCreate(db: SQLiteDatabase?) {

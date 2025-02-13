@@ -1,4 +1,4 @@
-package ru.afilonov.app1.fragments
+package ru.messenger.app1.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ru.afilonov.app1.R
-import ru.afilonov.app1.activities.MainActivity
-import ru.afilonov.app1.db.DbHelper
-import ru.afilonov.app1.models.User
-import ru.afilonov.app1.utils.SharedViewModel
+import ru.messenger.app1.R
+import ru.messenger.app1.activities.MainActivity
+import ru.messenger.app1.db.DbHelper
+import ru.messenger.app1.models.User
+import ru.messenger.app1.utils.SharedViewModel
 
 class SignInFragment : Fragment() {
 

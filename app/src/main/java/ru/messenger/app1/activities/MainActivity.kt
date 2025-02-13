@@ -1,13 +1,13 @@
-package ru.afilonov.app1.activities
+package ru.messenger.app1.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import ru.afilonov.app1.R
-import ru.afilonov.app1.fragments.HomeFragment
-import ru.afilonov.app1.fragments.OnboardFragment
-import ru.afilonov.app1.fragments.SignInFragment
-import ru.afilonov.app1.fragments.SignUpFragment
+import ru.messenger.app1.R
+import ru.messenger.app1.fragments.HomeFragment
+import ru.messenger.app1.fragments.OnboardFragment
+import ru.messenger.app1.fragments.SignInFragment
+import ru.messenger.app1.fragments.SignUpFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

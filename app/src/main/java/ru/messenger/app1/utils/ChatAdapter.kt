@@ -1,4 +1,4 @@
-package ru.afilonov.app1.utils
+package ru.messenger.app1.utils
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ru.afilonov.app1.R
-import ru.afilonov.app1.models.Chat
+import ru.messenger.app1.R
+import ru.messenger.app1.models.Chat
 
 class ChatAdapter(var chats: List<Chat>, var context: Context) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {

@@ -1,4 +1,4 @@
-package ru.afilonov.app1.fragments
+package ru.messenger.app1.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.afilonov.app1.R
-import ru.afilonov.app1.models.Chat
-import ru.afilonov.app1.utils.ChatAdapter
+import ru.messenger.app1.R
+import ru.messenger.app1.models.Chat
+import ru.messenger.app1.utils.ChatAdapter
 
 class HomeFragment : Fragment() {
     override fun onCreateView(

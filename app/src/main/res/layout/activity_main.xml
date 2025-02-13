@@ -11,7 +11,7 @@
         android:id="@+id/fragment_container_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:name="ru.afilonov.app1.fragments.OnboardFragment"
+        android:name="ru.messenger.app1.fragments.OnboardFragment"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
