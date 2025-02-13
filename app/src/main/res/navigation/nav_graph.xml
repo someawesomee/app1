@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="ru.afilonov.app1.fragments.OnboardFragment"
+        android:name="ru.messenger.app1.fragments.OnboardFragment"
         tools:layout="@layout/fragment_onboard">
         <action
             android:id="@+id/action_onboardFragment_to_signInFragment"
@@ -16,12 +16,12 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="ru.afilonov.app1.fragments.SignInFragment"
+        android:name="ru.messenger.app1.fragments.SignInFragment"
         tools:layout="@layout/fragment_sign_in">
         <argument
             android:name="user"
             android:defaultValue="@null"
-            app:argType="ru.afilonov.app1.models.User"
+            app:argType="ru.messenger.app1.models.User"
             app:nullable="true" />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="ru.afilonov.app1.fragments.SignUpFragment"
+        android:name="ru.messenger.app1.fragments.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
@@ -47,24 +47,24 @@
             <argument
                 android:name="user"
                 android:defaultValue="@null"
-                app:argType="ru.afilonov.app1.models.User"
+                app:argType="ru.messenger.app1.models.User"
                 app:nullable="true" />
         </action>
     </fragment>
 
     <fragment
         android:id="@+id/heroesFragment"
-        android:name="ru.afilonov.app1.fragments.HeroesFragment"
+        android:name="ru.messenger.app1.fragments.HeroesFragment"
         tools:layout="@layout/fragment_heroes" />
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ru.afilonov.app1.fragments.HomeFragment"
+        android:name="ru.messenger.app1.fragments.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="ru.afilonov.app1.fragments.SettingsFragment"
+        android:name="ru.messenger.app1.fragments.SettingsFragment"
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_signInFragment"
