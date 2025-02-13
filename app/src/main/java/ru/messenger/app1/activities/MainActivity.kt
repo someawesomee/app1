@@ -1,4 +1,4 @@
-package ru.afilonov.app1.activities
+package ru.messenger.app1.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.appcompat.widget.Toolbar
-import ru.afilonov.app1.R
+import ru.messenger.app1.R
 
 class MainActivity : AppCompatActivity() {
 

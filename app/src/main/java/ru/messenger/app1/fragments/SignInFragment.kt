@@ -1,4 +1,4 @@
-package ru.afilonov.app1.fragments
+package ru.messenger.app1.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import ru.afilonov.app1.R
-import ru.afilonov.app1.databinding.FragmentSignInBinding
-import ru.afilonov.app1.db.DbHelper
+import ru.messenger.app1.R
+import ru.messenger.app1.databinding.FragmentSignInBinding
+import ru.messenger.app1.db.DbHelper
 
 class SignInFragment : Fragment() {
 

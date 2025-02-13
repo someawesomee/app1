@@ -1,4 +1,4 @@
-package ru.afilonov.app1.fragments
+package ru.messenger.app1.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import ru.afilonov.app1.R
-import ru.afilonov.app1.databinding.FragmentOnboardBinding
+import ru.messenger.app1.R
+import ru.messenger.app1.databinding.FragmentOnboardBinding
 
 class OnboardFragment : Fragment() {
 

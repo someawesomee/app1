@@ -1,4 +1,4 @@
-package ru.afilonov.app1.models
+package ru.messenger.app1.models
 
 import java.io.Serializable
 
