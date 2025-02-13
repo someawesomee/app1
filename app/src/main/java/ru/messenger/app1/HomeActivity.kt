@@ -1,4 +1,4 @@
-package ru.afilonov.app1
+package ru.messenger.app1
 
 import android.os.Bundle
 import android.util.Log

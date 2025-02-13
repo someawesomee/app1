@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.afilonov.app1"
+    namespace = "ru.messenger.app1"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ru.afilonov.app1"
+        applicationId = "ru.messenger.app1"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
