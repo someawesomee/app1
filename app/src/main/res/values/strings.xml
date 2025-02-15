@@ -11,9 +11,9 @@
     <string name="do_reg">Зарегистрируйтесь, если нет аккаунта</string>
     <string name="start_img_descr">Красивая картинка</string>
     <string name="continue_">Продолжить</string>
-    <string name="other">Это другое..</string>
+    <string name="other"></string>
     <string name="telega">Телега</string>
-    <string name="mems">Мемограмм</string>
+    <string name="mems">DevMessage</string>
     <string name="chats">Чатики</string>
     <string name="message">Сообщение</string>
     <string name="date_of_message">Дата</string>
