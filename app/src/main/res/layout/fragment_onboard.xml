@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.OnboardFragment"
     android:orientation="vertical"
-    android:background="#201E28">
+    android:background="@drawable/gradient_background">
 
     <ImageView
         android:id="@+id/logo"
