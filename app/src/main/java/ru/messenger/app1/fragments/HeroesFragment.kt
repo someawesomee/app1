@@ -52,7 +52,7 @@ class HeroesFragment : Fragment() {
 
         lifecycleScope.launch {
             try {
-                val heroes = dataSource.getHeroes(4, 200)
+                val heroes = dataSource.getHeroes(4, 50)
                 Log.d("HeroesFragment", "Fetched heroes: $heroes")
                 binding.recyclerViewHeroes.adapter = ApiResponseAdapter(heroes)
             } catch (e: Exception) {
