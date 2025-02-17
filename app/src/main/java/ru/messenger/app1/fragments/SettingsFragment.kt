@@ -53,9 +53,7 @@ class SettingsFragment : Fragment() {
         loadEmail()
         updateFileStatus()
 
-        binding.themeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            saveThemeSetting(isChecked)
-        }
+
 
         binding.notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
             saveNotificationsSetting(isChecked)
@@ -131,7 +129,7 @@ class SettingsFragment : Fragment() {
                 val isDarkTheme = preferences[DARK_THEME_KEY] ?: false
                 val areNotificationsEnabled = preferences[NOTIFICATIONS_KEY] ?: true
 
-                binding.themeSwitch.isChecked = isDarkTheme
+
                 binding.notificationSwitch.isChecked = areNotificationsEnabled
             }
         }

@@ -30,16 +30,6 @@
         android:textColorHint="#fdfdfd" />
 
     <Switch
-        android:id="@+id/theme_switch"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/dark_theme"
-        android:textColor="#fdfdfd"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <Switch
         android:id="@+id/notification_switch"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
