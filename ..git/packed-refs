@@ -1,0 +1,9 @@
+# pack-refs with: peeled fully-peeled sorted 
+cd8d914b3b99af14012c4e764a4137d1185f220e refs/heads/fragment
+a79286d114d4114be42c868699c2ebcae4b34427 refs/heads/lifecycle
+df78fd49353ad91989990799871f7b42b5d68dc2 refs/heads/master
+f47e01ee7d3724938eedcc3bdd10c83952999c0c refs/heads/navigation
+150f11d81825882e0bce55fb52efe714298e2814 refs/heads/networking
+70ff4ea3dea90292ff680454d72c1de9a0c9ab7d refs/heads/roomdb
+58462770d0bd8e1a806eb9715d6288b191ac43ea refs/heads/settings
+49017995a441507141c7e9921bd3f11f344af371 refs/heads/transferData
