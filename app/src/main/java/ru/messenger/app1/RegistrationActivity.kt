@@ -19,28 +19,33 @@ class RegistrationActivity : AppCompatActivity() {
         val button: Button = findViewById(R.id.button_reg)
         val doBack: TextView = findViewById(R.id.back_sign_in)
 
+
         doBack.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
+
 
         button.setOnClickListener {
             val login = userLogin.text.toString().trim()
             val email = userEmail.text.toString().trim()
             val pass = userPass.text.toString().trim()
 
-            if (login == "" || email == "" || pass == "")
+            if (login.isEmpty() || email.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
-            else {
-                val user  = User(login, email, pass)
-                val db = DbHelper(this, null)
-                db.addUser(user)
-                Toast.makeText(this, "Новый пользователь: $login зарегистрирован", Toast.LENGTH_SHORT).show()
+            } else {
 
+                Toast.makeText(this, "Новый пользователь: $login зарегистрирован", Toast.LENGTH_SHORT).show()
                 userLogin.text.clear()
                 userEmail.text.clear()
-                userPass.text.clear()            }
+                userPass.text.clear()
 
+
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("USER_LOGIN", login)
+                intent.putExtra("USER_EMAIL", email)
+                startActivity(intent)
+            }
         }
     }
 }

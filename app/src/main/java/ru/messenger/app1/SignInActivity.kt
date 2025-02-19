@@ -23,34 +23,29 @@ class SignInActivity : AppCompatActivity() {
         val button: Button = findViewById(R.id.button_auth)
         val doReg: TextView = findViewById(R.id.do_reg)
 
+
         doReg.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
-
-            
             startActivity(intent)
         }
+
 
         button.setOnClickListener {
             val login = userLogin.text.toString().trim()
             val pass = userPass.text.toString().trim()
 
-            if (login == "" || pass == "")
+            if (login.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
-            else {
-                val db = DbHelper(this, null)
-                val isAuth = db.existUser(login, pass)
+            } else {
 
-                if (isAuth)  {
-                    Toast.makeText(this, "Пользователь: $login авторизован", Toast.LENGTH_SHORT).show()
-                    userLogin.text.clear()
-                    userPass.text.clear()
+                Toast.makeText(this, "Пользователь: $login авторизован", Toast.LENGTH_SHORT).show()
+                userLogin.text.clear()
+                userPass.text.clear()
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                } else
-                    Toast.makeText(this, "Пользователь: $login не авторизован", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("USER_LOGIN", login)
+                startActivity(intent)
             }
-
         }
     }
 
