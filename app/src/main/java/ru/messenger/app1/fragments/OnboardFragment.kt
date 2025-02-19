@@ -25,19 +25,16 @@ class OnboardFragment : Fragment() {
         val button: Button = view.findViewById(R.id.button_continue)
         val image: ImageView = view.findViewById(R.id.logo)
 
-        val imageId = this.resources.getIdentifier(
+        val imageId = resources.getIdentifier(
             "logo_start",
             "drawable",
             requireContext().packageName
         )
-
         image.setImageResource(imageId)
 
         button.setOnClickListener {
+
             (activity as? MainActivity)?.navigateToSignInFragment()
         }
     }
-
-
-
 }
