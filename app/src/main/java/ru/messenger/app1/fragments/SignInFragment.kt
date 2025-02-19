@@ -10,12 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.messenger.app1.R
 import ru.messenger.app1.databinding.FragmentSignInBinding
-import ru.messenger.app1.db.DbHelper
+import ru.messenger.app1.models.User
 
 class SignInFragment : Fragment() {
 
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
+
+    // Берём аргументы через Safe Args
     private val args: SignInFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -35,19 +37,19 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        // userLogin = view.findViewById(R.id.user_login_auth)
-        // userPass = view.findViewById(R.id.user_pass_auth)
+        val userFromSignUp: User? = args.user
 
 
-        val user = args.user
-        user?.let {
+        userFromSignUp?.let {
             binding.userLoginAuth.setText(it.login)
             binding.userPassAuth.setText(it.pass)
         }
 
+
         binding.doReg.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
+
 
         binding.buttonAuth.setOnClickListener {
             val login = binding.userLoginAuth.text.toString().trim()
@@ -60,17 +62,21 @@ class SignInFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                val db = DbHelper(requireContext(), null)
-                val isAuth = db.existUser(login, pass)
 
-                if (isAuth) {
+                if (userFromSignUp != null &&
+                    userFromSignUp.login == login &&
+                    userFromSignUp.pass == pass
+                ) {
                     Toast.makeText(
                         requireContext(),
                         "Пользователь: $login авторизован",
                         Toast.LENGTH_SHORT
                     ).show()
+
+
                     binding.userLoginAuth.text.clear()
                     binding.userPassAuth.text.clear()
+
 
                     findNavController().navigate(R.id.action_signInFragment_to_homeFragment)
                 } else {

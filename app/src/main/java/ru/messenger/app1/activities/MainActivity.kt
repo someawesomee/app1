@@ -23,22 +23,12 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
+
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
-    fun navigateToSignIn() {
-        navController.navigate(R.id.action_onboardFragment_to_signInFragment)
-    }
 
-    fun navigateToSignInFromSingUp() {
-        navController.navigate(R.id.action_signUpFragment_to_signInFragment)
-    }
-
-    fun navigateToHome() {
-        navController.navigate(R.id.action_signInFragment_to_homeFragment)
-    }
-
-    fun navigateToSignUp() {
-        navController.navigate(R.id.action_signInFragment_to_signUpFragment)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/onboardFragment">
 
+    <!-- OnboardFragment -->
     <fragment
         android:id="@+id/onboardFragment"
         android:name="ru.messenger.app1.fragments.OnboardFragment"
@@ -14,15 +15,18 @@
             app:destination="@id/signInFragment" />
     </fragment>
 
+    <!-- SignInFragment -->
     <fragment
         android:id="@+id/signInFragment"
         android:name="ru.messenger.app1.fragments.SignInFragment"
         tools:layout="@layout/fragment_sign_in">
+
         <argument
             android:name="user"
             app:argType="ru.messenger.app1.models.User"
             app:nullable="true"
-            android:defaultValue="@null"/>
+            android:defaultValue="@null" />
+
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -31,23 +35,29 @@
             app:destination="@id/homeFragment" />
     </fragment>
 
+    <!-- SignUpFragment -->
     <fragment
         android:id="@+id/signUpFragment"
         android:name="ru.messenger.app1.fragments.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
+
+        <!-- Тоже можно задать аргумент user, если нужно -->
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment">
+
+            <!-- Аргумент, передаваемый ИМЕННО по экшену (SignUp->SignIn) -->
             <argument
                 android:name="user"
                 app:argType="ru.messenger.app1.models.User"
                 app:nullable="true"
-                android:defaultValue="@null"/>
+                android:defaultValue="@null" />
         </action>
     </fragment>
 
+    <!-- HomeFragment -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="ru.messenger.app1.fragments.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home"/>
 </navigation>

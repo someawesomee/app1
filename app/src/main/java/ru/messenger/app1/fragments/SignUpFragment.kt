@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import ru.messenger.app1.R
 import ru.messenger.app1.databinding.FragmentSignUpBinding
-import ru.messenger.app1.db.DbHelper
 import ru.messenger.app1.models.User
 
 class SignUpFragment : Fragment() {
@@ -33,14 +31,11 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        // userLogin = view.findViewById(R.id.user_login)
-        // userEmail = view.findViewById(R.id.user_email)
-        // userPass = view.findViewById(R.id.user_pass)
-
-
         binding.backSignIn.setOnClickListener {
-            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+
+            findNavController().navigate(
+                ru.messenger.app1.R.id.action_signUpFragment_to_signInFragment
+            )
         }
 
         binding.buttonReg.setOnClickListener {
@@ -55,18 +50,20 @@ class SignUpFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                val user = User(login, email, pass)
-                val db = DbHelper(requireContext(), null)
 
-                db.addUser(user)
+                val user = User(login, email, pass)
+
                 Toast.makeText(
                     requireContext(),
                     "Новый пользователь: $login зарегистрирован",
                     Toast.LENGTH_SHORT
                 ).show()
 
-                val action = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment(user)
+
+                val action = SignUpFragmentDirections
+                    .actionSignUpFragmentToSignInFragment(user)
                 findNavController().navigate(action)
+
 
                 binding.userLogin.text.clear()
                 binding.userEmail.text.clear()

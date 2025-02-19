@@ -15,8 +15,7 @@ class OnboardFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOnboardBinding.inflate(inflater, container, false)
@@ -31,14 +30,13 @@ class OnboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Раньше было: val image: ImageView = view.findViewById(R.id.logo)
-        // Заменяем на обращение через binding
-        val imageId = this.resources.getIdentifier(
+        val imageId = resources.getIdentifier(
             "logo_start",
             "drawable",
             requireContext().packageName
         )
         binding.logo.setImageResource(imageId)
+
 
         binding.buttonContinue.setOnClickListener {
             findNavController().navigate(R.id.action_onboardFragment_to_signInFragment)
